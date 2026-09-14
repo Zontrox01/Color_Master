@@ -11,15 +11,15 @@ Aplicación de escritorio (PySide6) para artistas que trabajan con acuarela, acr
 
 ## 📑 Índice
 
-- [Funcionalidad](#-funcionalidad)
-- [Capturas](#-capturas)
-- [Arquitectura en breve](#-arquitectura-en-breve)
-- [Instalación](#-instalación)
+- [Funcionalidad](#funcionalidad)
+- [Capturas](#capturas)
+- [Arquitectura en breve](#arquitectura-en-breve)
+- [Instalación](#instalacion)
 - [Uso](#uso)
 - [Estructura del proyecto](#estructura-del-proyecto)
-- [Cómo añadir tus propias tintas a la base de datos](#cómo-añadir-tus-propias-tintas-a-la-base-de-datos)
-- [Cómo ampliar la base de datos oficial con un fabricante nuevo](#-cómo-ampliar-la-base-de-datos-oficial-con-un-fabricante-nuevo)
-- [Fuentes de datos y licencias](#-fuentes-de-datos-y-licencias)
+- [Cómo añadir tus propias tintas a la base de datos](#como-anadir-tus-propias-tintas-a-la-base-de-datos)
+- [Cómo ampliar la base de datos oficial con un fabricante nuevo](#como-ampliar-la-base-de-datos-oficial-con-un-fabricante-nuevo)
+- [Fuentes de datos y licencias](#fuentes-de-datos-y-licencias)
 - [Licencia](#licencia)
 
 ## ✨ Funcionalidad
