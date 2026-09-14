@@ -56,7 +56,7 @@ cd Color_Master
 pip install -r requirements.txt
 ```
 
-## ▶️ Uso
+## 📸 Uso
 
 ```bash
 python main.py
