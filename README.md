@@ -45,8 +45,8 @@ Aplicación de escritorio (PySide6) para artistas que trabajan con acuarela, acr
 Requiere Python 3.10+ y Windows, macOS o Linux con soporte para PySide6.
 
 ```bash
-git clone <url-del-repositorio>
-cd ColorMaster
+git clone [<url-del-repositorio>](https://github.com/Zontro01/Color_Master.git)
+cd Color_Master
 pip install -r requirements.txt
 ```
 
