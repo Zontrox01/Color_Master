@@ -56,13 +56,13 @@ cd Color_Master
 pip install -r requirements.txt
 ```
 
-## 📸 Uso
+## ⚙️ Uso
 
 ```bash
 python main.py
 ```
 
-## 🗂️ Estructura del proyecto
+## 🧱 Estructura del proyecto
 
 ```
 ColorMaster/
@@ -134,6 +134,6 @@ python database/build_index.py
 - **Daniel Smith Acuarela** (214 colores, incluido en este repositorio): datos oficiales publicados por el propio fabricante en [danielsmith.com](https://danielsmith.com) (tabla pública de coordenadas CIE Lab + ficha de transparencia). Se citan como cortesía; la marca y los datos son propiedad de Daniel Smith Corporation.
 - Cualquier dato que añadas tú mismo desde artistpigments.org u otra fuente queda en **tu base de datos local** (SQLite, no se sube a este repositorio) y conserva los términos de esa fuente — ver la sección anterior.
 
-## ⚖️ Licencia
+## 🎯 Licencia
 
 El código de este repositorio se distribuye bajo licencia **MIT** — ver [`LICENSE`](LICENSE). Esto cubre el software, no los datos de color de terceros que puedas añadir a tu base de datos personal.
