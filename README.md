@@ -11,7 +11,7 @@ Aplicación de escritorio (PySide6) para artistas que trabajan con acuarela, acr
 
 ## 📑 Índice
 
-- [✨ Funcionalidad](#funcionalidad)
+- [✨ Funcionalidad](## ✨ Funcionalidad)
 - [Capturas] (#capturas)
 - [Arquitectura en breve](#arquitectura-en-breve)
 - [Instalación](#instalación)
