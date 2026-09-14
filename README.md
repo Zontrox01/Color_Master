@@ -2,6 +2,7 @@
 
 Aplicación de escritorio (PySide6) para artistas que trabajan con acuarela, acrílico y óleo: elige un color, genera sus gradientes de brillo/saturación/tono/luminosidad, gestiona tu paleta real de pigmentos, y descubre qué proporción de tus tintas necesitas mezclar para conseguir un color objetivo.
 
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![PySide6](https://img.shields.io/badge/UI-PySide6%20(Qt6)-green)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-yellow)
