@@ -9,7 +9,7 @@ Aplicación de escritorio (PySide6) para artistas que trabajan con acuarela, acr
 
 ---
 
-## Índice
+## 📑 Índice
 
 - [Funcionalidad](#funcionalidad)
 - [Capturas de la arquitectura](#arquitectura-en-breve)
@@ -21,7 +21,7 @@ Aplicación de escritorio (PySide6) para artistas que trabajan con acuarela, acr
 - [Fuentes de datos y licencias](#fuentes-de-datos-y-licencias)
 - [Licencia](#licencia)
 
-## Funcionalidad
+## ✨ Funcionalidad
 
 - **Selector de color** tipo Photoshop (hex, RGB, CMYK), con color complementario automático.
 - **5 gradientes de 10-27 pasos** (configurable): brillo, saturación, tono, luminosidad, y una transición libre entre dos colores.
@@ -35,17 +35,17 @@ Aplicación de escritorio (PySide6) para artistas que trabajan con acuarela, acr
 
 ## 📸 Capturas
 
-> ![Captura de Icon Editor Pro](recursos/screenshot.png)
+> ![Captura de Icon Editor Pro](resources/screenshot.png)
 > Captura de pantalla de ColorMaster
 
-## Arquitectura en breve
+## 🧩 Arquitectura en breve
 
 - **`core/color_math.py`**: todas las conversiones de color (HEX/RGB/HSV/HSL/CMYK/Lab) y la generación de gradientes. Sin dependencias de Qt.
 - **`core/mixer.py`**: modelo de mezcla de pigmentos. Como no se dispone de reflectancia espectral real de los pigmentos, se usa una aproximación de Kubelka-Munk de constante única aplicada a cada canal RGB (más realista que promediar RGB directamente), ponderada por la opacidad de cada pigmento.
 - **`database/db_manager.py`**: paletas de usuario en SQLite. Cada pigmento guardado en una paleta lleva copiados sus propios datos (nombre, marca, tipo, hex, opacidad) — así mostrar la paleta o calcular una mezcla nunca necesita releer ningún Excel de fabricante, por grande que llegue a ser la base de datos de catálogos.
 - **`database/pigment_index.xlsx`**: índice ligero (una fila por combinación marca+tipo) que se carga siempre al arrancar. El Excel real de un fabricante solo se carga cuando el usuario decide explorarlo.
 
-## Instalación
+## 🚀 Instalación
 
 Requiere Python 3.10+ y Windows, macOS o Linux con soporte para PySide6.
 
@@ -55,13 +55,13 @@ cd Color_Master
 pip install -r requirements.txt
 ```
 
-## Uso
+## ▶️ Uso
 
 ```bash
 python main.py
 ```
 
-## Estructura del proyecto
+## 🗂️ Estructura del proyecto
 
 ```
 ColorMaster/
@@ -76,7 +76,7 @@ ColorMaster/
 
 Para el detalle completo de cada archivo, ver [`FILES.md`](FILES.md).
 
-## Cómo añadir tus propias tintas a la base de datos
+## 🖌️ Cómo añadir tus propias tintas a la base de datos
 
 Desde la propia aplicación, sin tocar ningún archivo a mano:
 
@@ -91,7 +91,7 @@ Desde la propia aplicación, sin tocar ningún archivo a mano:
 7. Ajusta **opacidad** (0 = transparente, 1 = opaco) y **fiabilidad** (1-5, cuánto te fías tú mismo de este dato).
 8. Guarda. La tinta queda disponible al instante para añadirla a tu paleta.
 
-### De dónde sacar valores L\*a\*b\* reales (no inventes los datos)
+### De dónde sacar valores L\*a\*b\* reales
 
 La web **[artistpigments.org](https://artistpigments.org)** tiene mediciones CIE L\*a\*b\* reales de miles de colores de cientos de marcas, hechas con espectrofotómetro. Es la fuente recomendada para tintas puntuales que tú mismo uses:
 
@@ -112,7 +112,7 @@ La web **[artistpigments.org](https://artistpigments.org)** tiene mediciones CIE
 
 ⚠️ **Importante — licencia**: el contenido de artistpigments.org está bajo licencia **[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)** (uso no comercial, con atribución). Esto es perfectamente correcto para tu propia paleta personal, pero significa que **no se debe redistribuir un volcado masivo de sus datos** como parte de la base de datos oficial de este repositorio. Por eso ColorMaster no incluye ningún catálogo extraído de artistpigments.org — solo lo que cada usuario añade a su propia base de datos local.
 
-## Cómo ampliar la base de datos oficial con un fabricante nuevo
+## 🏭 Cómo ampliar la base de datos oficial con un fabricante nuevo
 
 Esto es para quien mantiene el repositorio, no para el uso normal de la app (que ya cubre el apartado anterior). Requiere encontrar una fuente **oficial, pública y gratuita** con valores numéricos de color (no cartas de color en PDF sin datos, no fuentes con login) para poder incluirla como catálogo con fiabilidad alta. Ver [`FILES.md`](FILES.md) para el criterio completo y el historial de qué fabricantes se investigaron.
 
@@ -128,11 +128,11 @@ python utils/conversor_lab_hex.py --input data_sources/mi_fabricante.csv \
 python database/build_index.py
 ```
 
-## Fuentes de datos y licencias
+## 📚 Fuentes de datos y licencias
 
 - **Daniel Smith Acuarela** (214 colores, incluido en este repositorio): datos oficiales publicados por el propio fabricante en [danielsmith.com](https://danielsmith.com) (tabla pública de coordenadas CIE Lab + ficha de transparencia). Se citan como cortesía; la marca y los datos son propiedad de Daniel Smith Corporation.
 - Cualquier dato que añadas tú mismo desde artistpigments.org u otra fuente queda en **tu base de datos local** (SQLite, no se sube a este repositorio) y conserva los términos de esa fuente — ver la sección anterior.
 
-## Licencia
+## ⚖️ Licencia
 
 El código de este repositorio se distribuye bajo licencia **MIT** — ver [`LICENSE`](LICENSE). Esto cubre el software, no los datos de color de terceros que puedas añadir a tu base de datos personal.
