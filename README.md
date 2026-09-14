@@ -77,7 +77,7 @@ ColorMaster/
 
 Para el detalle completo de cada archivo, ver [`FILES.md`](FILES.md).
 
-## 🖌️ Cómo añadir tus propias tintas a la base de datos
+## 🧮 Cómo añadir tus propias tintas a la base de datos
 
 Desde la propia aplicación, sin tocar ningún archivo a mano:
 
