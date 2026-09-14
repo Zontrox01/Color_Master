@@ -33,6 +33,11 @@ Aplicación de escritorio (PySide6) para artistas que trabajan con acuarela, acr
 - **Exportación a PDF** de un informe completo (color master, gradientes, paleta, mezcla, historial reciente).
 - Interfaz en español, con tema claro/oscuro.
 
+## 📸 Capturas
+
+> ![Captura de Icon Editor Pro](recursos/screenshot.png)
+> Captura de pantalla de ColorMaster
+
 ## Arquitectura en breve
 
 - **`core/color_math.py`**: todas las conversiones de color (HEX/RGB/HSV/HSL/CMYK/Lab) y la generación de gradientes. Sin dependencias de Qt.
