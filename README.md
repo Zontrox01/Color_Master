@@ -113,7 +113,7 @@ La web **[artistpigments.org](https://artistpigments.org)** tiene mediciones CIE
 
 ⚠️ **Importante — licencia**: el contenido de artistpigments.org está bajo licencia **[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)** (uso no comercial, con atribución). Esto es perfectamente correcto para tu propia paleta personal, pero significa que **no se debe redistribuir un volcado masivo de sus datos** como parte de la base de datos oficial de este repositorio. Por eso ColorMaster no incluye ningún catálogo extraído de artistpigments.org — solo lo que cada usuario añade a su propia base de datos local.
 
-## 🏭 Cómo ampliar la base de datos oficial con un fabricante nuevo
+## 🗃️ Cómo ampliar la base de datos oficial con un fabricante nuevo
 
 Esto es para quien mantiene el repositorio, no para el uso normal de la app (que ya cubre el apartado anterior). Requiere encontrar una fuente **oficial, pública y gratuita** con valores numéricos de color (no cartas de color en PDF sin datos, no fuentes con login) para poder incluirla como catálogo con fiabilidad alta. Ver [`FILES.md`](FILES.md) para el criterio completo y el historial de qué fabricantes se investigaron.
 
