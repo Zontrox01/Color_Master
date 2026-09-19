@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ColorMaster – Gestión de color y mezclas para artistas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aplicación de escritorio para artistas: elige colores, genera gradientes, gestiona tu paleta real de pigmentos y calcula mezclas óptimas.">
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0b1520;
+      color: #e5edf5;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #082e6c, #021433);
+      padding: 3rem 10%;
+      text-align: left;
+      color: #fdfdfd;
+    }
+    header h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2.4rem;
+    }
+    header h2 {
+      margin: 0;
+      font-weight: 400;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    header p {
+      margin-top: 1.5rem;
+      max-width: 700px;
+      font-size: 1rem;
+    }
+    .hero-image {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .header-flex {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .header-text {
+      flex: 1 1 400px;
+    }
+    .header-image {
+      flex: 0 0 320px;
+      text-align: right;
+    }
+    .header-image img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 12px;
+      border: 1px solid rgba(200, 230, 255, 0.15);
+    }
+    .hero-card {
+      flex: 1 1 260px;
+      background: rgba(5, 12, 20, 0.35);
+      border-radius: 12px;
+      padding: 1rem;
+      border: 1px solid rgba(200, 230, 255, 0.12);
+    }
+    .hero-card h3 {
+      margin-top: 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #b9e6ff;
+    }
+    .hero-card p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    main {
+      padding: 2.5rem 10% 3rem 10%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 2.5rem;
+      background: rgba(8, 18, 30, 0.9);
+      border-radius: 12px;
+      padding: 1.8rem 1.8rem 1.6rem 1.8rem;
+      border: 1px solid rgba(180, 210, 240, 0.12);
+    }
+    section h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      border-bottom: 1px solid rgba(120, 160, 200, 0.35);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    section h3 {
+      margin-top: 1.4rem;
+      font-size: 1.1rem;
+    }
+    p {
+      margin: 0.4rem 0 0.8rem 0;
+    }
+    .columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .col {
+      flex: 1 1 260px;
+    }
+    .code-block {
+      background: #050b12;
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      border: 1px solid rgba(120, 160, 200, 0.35);
+    }
+    .tagline {
+      font-size: 0.95rem;
+      color: #c7d9ec;
+    }
+    .badge-row {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .badge {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(200, 230, 255, 0.25);
+      color: #cfe7ff;
+      background: rgba(5, 15, 25, 0.7);
+    }
+    ul {
+      margin: 0.4rem 0 0.8rem 1.2rem;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 0.3rem;
+    }
+    .project-structure {
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      background: #050b12;
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(120, 160, 200, 0.35);
+      overflow-x: auto;
+      white-space: pre;
+    }
+    footer {
+      padding: 1.5rem 10%;
+      font-size: 0.8rem;
+      color: #9fb3c9;
+      border-top: 1px solid rgba(80, 110, 140, 0.4);
+      background: #050b10;
+    }
+    a {
+      color: #7fd3ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 800px) {
+      header, main, footer {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-flex">
+    <div class="header-text">
+      <h1>ColorMaster</h1>
+      <h2>Color, gradientes y mezclas reales de pigmentos para artistas</h2>
+
+      <p>
+        Aplicación de escritorio (PySide6) para artistas que trabajan con acuarela, acrílico y óleo:
+        elige un color, genera sus gradientes de brillo/saturación/tono/luminosidad, gestiona tu paleta
+        real de pigmentos y descubre qué proporción de tus tintas necesitas mezclar para conseguir
+        un color objetivo.
+      </p>
+      <p>
+        Funciona con catálogos de fabricantes, paletas personales en SQLite y un motor de mezcla
+        basado en una aproximación de Kubelka-Munk. Añadir tus propias tintas o fabricantes no
+        requiere tocar el código.
+      </p>
+    </div>
+
+    <div class="header-image">
+      <!-- NOTA: la URL original daba 404. Sustituye esta ruta por la imagen correcta. -->
+      <img src="https://github.com/Zontrox01/Color_Master/blob/main/resources/colormaster"
+           alt="ColorMaster – Gestión de color y mezclas para artistas">
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <div class="hero-card">
+      <h3>Selector y gradientes</h3>
+      <p>
+        Selector tipo Photoshop (hex, RGB, CMYK) con color complementario automático y 5 gradientes
+        de 10-27 pasos: brillo, saturación, tono, luminosidad y transición libre entre dos colores.
+      </p>
+    </div>
+    <div class="hero-card">
+      <h3>Catálogos y paleta real</h3>
+      <p>
+        Explorador de catálogos de fabricantes con carga perezosa (solo el Excel que decides abrir)
+        y paleta personal en SQLite, con varias paletas con nombre y todos los datos del pigmento
+        copiados localmente.
+      </p>
+    </div>
+    <div class="hero-card">
+      <h3>Mezcla óptima</h3>
+      <p>
+        Dado un color objetivo y tu paleta, calcula qué proporción de hasta 4 pigmentos se aproxima
+        más, con el ΔE del resultado, usando un modelo de mezcla más realista que el promedio RGB.
+      </p>
+    </div>
+  </div>
+
+  <div class="badge-row">
+    <span class="badge">PySide6</span>
+    <span class="badge">Color matemático</span>
+    <span class="badge">Kubelka-Munk</span>
+    <span class="badge">SQLite</span>
+    <span class="badge">Multi-fabricante</span>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <h2>Qué es ColorMaster</h2>
+    <p class="tagline">
+      Una herramienta de escritorio para artistas que quieren entender y controlar el color de sus
+      pigmentos reales: desde la elección de un color hasta la mezcla exacta con sus propias tintas.
+    </p>
+    <p>
+      ColorMaster separa claramente la lógica de color (sin dependencias de Qt) de la interfaz y de
+      la base de datos. El núcleo matemático convierte entre HEX, RGB, HSV, HSL, CMYK y Lab, y genera
+      gradientes. El mezclador usa una aproximación de Kubelka-Munk de constante única aplicada a
+      cada canal RGB, ponderada por la opacidad de cada pigmento, lo que da resultados más realistas
+      que promediar RGB directamente.
+    </p>
+    <p>
+      La aplicación está pensada para que puedas añadir tus propias tintas y fabricantes sin tocar
+      el código: desde la propia interfaz, con un diálogo que admite color directo en hex o valores
+      L*a*b*, y con control de opacidad y fiabilidad del dato.
+    </p>
+  </section>
+
+  <section>
+    <h2>Características principales</h2>
+    <div class="columns">
+      <div class="col">
+        <h3>Color y gradientes</h3>
+        <ul>
+          <li>Selector de color tipo Photoshop (hex, RGB, CMYK).</li>
+          <li>Color complementario automático.</li>
+          <li>5 gradientes de 10-27 pasos configurables: brillo, saturación, tono, luminosidad y transición libre entre dos colores.</li>
+        </ul>
+
+        <h3>Catálogos de fabricantes</h3>
+        <ul>
+          <li>Explorador con carga perezosa: solo se lee el Excel del fabricante que decides explorar.</li>
+          <li>Filtro por tipo de tinta y buscador por nombre.</li>
+          <li>Índice ligero <code>pigment_index.xlsx</code> cargado siempre al arrancar.</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h3>Paleta personal</h3>
+        <ul>
+          <li>Guarda qué pigmentos tienes, de cualquier fabricante, en SQLite.</li>
+          <li>Varias paletas con nombre.</li>
+          <li>Cada pigmento guardado copia sus propios datos (nombre, marca, tipo, hex, opacidad): mostrar la paleta o calcular una mezcla nunca necesita releer un Excel de fabricante.</li>
+        </ul>
+
+        <h3>Mezcla y historial</h3>
+        <ul>
+          <li>Sugerencia de mezcla óptima con hasta 4 pigmentos y ΔE del resultado.</li>
+          <li>Historial de colores seleccionados y mezclas calculadas.</li>
+          <li>Exportación/importación del historial a archivo.</li>
+          <li>Exportación a PDF de un informe completo (color master, gradientes, paleta, mezcla, historial reciente).</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h3>Añadir tus propios pigmentos</h3>
+        <ul>
+          <li>Fabricante nuevo o tinta de un fabricante ya existente.</li>
+          <li>Color introducido a mano: hex directo o valores L*a*b*.</li>
+          <li>Control de opacidad (0 = transparente, 1 = opaco) y fiabilidad (1-5).</li>
+          <li>La tinta queda disponible al instante para añadirla a tu paleta.</li>
+        </ul>
+
+        <h3>Interfaz</h3>
+        <ul>
+          <li>Interfaz en español.</li>
+          <li>Tema claro/oscuro.</li>
+          <li>Arquitectura clara: <code>core/</code> sin Qt, <code>ui/</code> PySide6, <code>database/</code> SQLite.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Instalación y uso rápido</h2>
+
+    <h3>Instalación</h3>
+    <div class="code-block">
+      git clone &lt;url-del-repositorio&gt;<br>
+      cd ColorMaster<br>
+      pip install -r requirements.txt
+    </div>
+    <p>
+      Requiere Python 3.10+ y Windows, macOS o Linux con soporte para PySide6.
+    </p>
+
+    <h3>Ejecutar la aplicación</h3>
+    <div class="code-block">
+      python main.py
+    </div>
+    <p>
+      Abre el panel derecho, sección <strong>"Explorar catálogo de un fabricante"</strong> para cargar
+      catálogos, o usa <strong>"+ Añadir fabricante o tinta"</strong> para incorporar tus propios pigmentos.
+    </p>
+
+    <h3>Añadir tus propias tintas</h3>
+    <div class="code-block">
+      # Desde la app:<br>
+      1. Panel derecho → "Explorar catálogo de un fabricante"<br>
+      2. "+ Añadir fabricante o tinta"<br>
+      3. Elige marca y tipo (existente o nuevo)<br>
+      4. Escribe el nombre del color<br>
+      5. Elige color directo (hex) o valores L*a*b*<br>
+      6. Ajusta opacidad (0-1) y fiabilidad (1-5)<br>
+      7. Guarda
+    </div>
+  </section>
+
+  <section>
+    <h2>Añadir tus propias tintas y fuentes de datos</h2>
+
+    <h3>Desde la aplicación (sin tocar código)</h3>
+    <p>
+      El diálogo <strong>"+ Añadir fabricante o tinta"</strong> permite crear un fabricante nuevo o
+      añadir una tinta a uno existente. Puedes dar el color directamente en hex o introducir valores
+      L*a*b* si tienes una ficha técnica. La opacidad y la fiabilidad del dato se ajustan con
+      controles deslizantes.
+    </p>
+
+    <h3>De dónde sacar valores L*a*b* reales</h3>
+    <p>
+      La web <a href="https://artistpigments.org" target="_blank">artistpigments.org</a> tiene
+      mediciones CIE L*a*b* reales de miles de colores de cientos de marcas, hechas con
+      espectrofotómetro. Es la fuente recomendada para tintas puntuales que tú mismo uses.
+    </p>
+    <div class="code-block">
+      1. Crea una cuenta gratuita en artistpigments.org<br>
+      2. Busca tu marca y el color exacto<br>
+      3. Anota L*, a*, b* y la categoría de transparencia<br>
+      4. En ColorMaster usa el modo "Introducir valores L*a*b*"<br>
+      5. Equivalencia de opacidad:<br>
+      &nbsp;&nbsp;Opaque → 0.90<br>
+      &nbsp;&nbsp;Semi-Opaque → 0.65<br>
+      &nbsp;&nbsp;Semi-Transparent → 0.40<br>
+      &nbsp;&nbsp;Transparent → 0.15<br>
+      6. En "fuente" escribe: artistpigments.org (cuenta propia) - [marca]<br>
+      7. Fiabilidad: 4
+    </div>
+    <p>
+      ⚠️ <strong>Importante — licencia</strong>: el contenido de artistpigments.org está bajo
+      licencia <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+      (uso no comercial, con atribución). Es correcto para tu paleta personal, pero
+      <strong>no se debe redistribuir un volcado masivo de sus datos</strong> como parte de la base
+      de datos oficial de este repositorio. Por eso ColorMaster no incluye ningún catálogo extraído
+      de artistpigments.org.
+    </p>
+
+    <h3>Ampliar la base de datos oficial (mantenedores)</h3>
+    <p>
+      Requiere encontrar una fuente <strong>oficial, pública y gratuita</strong> con valores
+      numéricos de color (no cartas en PDF sin datos, no fuentes con login) para incluirla como
+      catálogo con fiabilidad alta.
+    </p>
+    <div class="code-block">
+      # 1. Convertir un CSV con columnas Nombre,Tipo,L,a,b,Opacidad<br>
+      python utils/conversor_lab_hex.py --input data_sources/mi_fabricante.csv \<br>
+      &nbsp;&nbsp;--output database/mi_fabricante_convertido.xlsx \<br>
+      &nbsp;&nbsp;--fuente "Mi Fabricante Official" --marca "Mi Fabricante" --fiabilidad 5<br><br>
+      # 2. Añadir una entrada en database/build_index.py (lista SOURCES)<br><br>
+      # 3. Regenerar el índice<br>
+      python database/build_index.py
+    </div>
+  </section>
+
+  <section>
+    <h2>Arquitectura y estado del proyecto</h2>
+    <p>
+      ColorMaster separa el núcleo matemático de la interfaz y de la base de datos, lo que permite
+      usar la lógica de color y mezcla como biblioteca independiente.
+    </p>
+    <div class="project-structure">
+Componentes principales
+├── core/color_math.py         # Conversiones HEX/RGB/HSV/HSL/CMYK/Lab y gradientes (sin Qt)
+├── core/mixer.py              # Modelo de mezcla Kubelka-Munk de constante única por canal RGB
+├── database/db_manager.py     # Paletas de usuario en SQLite (datos copiados localmente)
+├── database/pigment_index.xlsx # Índice ligero marca+tipo, cargado al arrancar
+├── ui/                        # Interfaz PySide6 (temas claro/oscuro en resources/)
+├── utils/                     # Conversor Lab→hex, historial, exportación a PDF
+├── data_sources/              # CSV originales usados para construir catálogos oficiales
+└── main.py                    # Punto de entrada
+    </div>
+    <p>
+      El proyecto incluye el catálogo oficial de <strong>Daniel Smith Acuarela</strong> (214 colores)
+      con datos publicados por el propio fabricante. Cualquier dato que añadas tú mismo desde
+      artistpigments.org u otra fuente queda en tu base de datos local (SQLite, no se sube a este
+      repositorio) y conserva los términos de esa fuente.
+    </p>
+  </section>
+
+  <section>
+    <h2>Documentación, créditos y licencia</h2>
+
+    <h3>Documentación</h3>
+    <ul>
+      <li><strong>README.md</strong> — descripción general, instalación y uso.</li>
+      <li><strong>FILES.md</strong> — inventario completo de scripts y módulos, con estado de auditoría.</li>
+      <li><strong>LICENSE</strong> — licencia MIT del código.</li>
+    </ul>
+
+    <h3>Fuentes de datos y licencias</h3>
+    <ul>
+      <li><strong>Daniel Smith Acuarela</strong> (214 colores, incluido en el repositorio): datos oficiales publicados por el fabricante en <a href="https://danielsmith.com" target="_blank">danielsmith.com</a> (tabla pública de coordenadas CIE Lab + ficha de transparencia). Se citan como cortesía; la marca y los datos son propiedad de Daniel Smith Corporation.</li>
+      <li><strong>artistpigments.org</strong>: los datos que añadas tú mismo quedan en tu base local y conservan la licencia CC BY-NC 4.0 de la fuente.</li>
+    </ul>
+
+    <h3>Licencia</h3>
+    <p>
+      El código de este repositorio se distribuye bajo licencia <strong>MIT</strong> — ver
+      <code>LICENSE</code>. Esto cubre el software, no los datos de color de terceros que puedas
+      añadir a tu base de datos personal.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    ColorMaster — Gestión de color, gradientes y mezclas reales de pigmentos para artistas.<br>
+    Documentación completa: <code>README.md</code> · <code>FILES.md</code>.<br>
+    Repositorio del proyecto:
+    <a href="https://github.com/Zontrox01/Color_Master" target="_blank">
+      ColorMaster en GitHub
+    </a>
+  </p>
+</footer>
+</body>
+</html>
